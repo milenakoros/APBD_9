@@ -2,5 +2,5 @@
 
 public interface ITripService
 {
-    Task<IEnumerable<Trip>> GetTripsAsync(int page, int pageSize);
+    Task<(IEnumerable<Trip>, int)> GetTripsAsync(int page, int pageSize);
 }

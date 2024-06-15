@@ -19,7 +19,7 @@ public class ClientsController : ControllerBase
         var result = await _clientService.DeleteClientAsync(idClient);
         if (!result)
         {
-            return BadRequest("Cannot delete client with assigned trips.");
+            return BadRequest("Cannot delete client which is not exist or with assigned trips.");
         }
 
         return NoContent();

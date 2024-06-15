@@ -19,7 +19,8 @@ public class ClientRepository : IClientRepository
 
     public async Task<Client?> GetClientByIdAsync(int clientId)
     {
-        return await _context.Clients.FindAsync(clientId);
+        return await _context.Clients
+            .Where(c => c.IdClient == clientId).SingleAsync();
     }
 
     public async Task<Client?> GetClientByPeselAsync(string pesel)

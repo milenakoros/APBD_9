@@ -13,11 +13,10 @@ public class TripService : ITripService
         _tripRepository = tripRepository;
     }
 
-    public async Task<IEnumerable<Trip>> GetTripsAsync(int page, int pageSize)
+    public async Task<(IEnumerable<Trip>, int)> GetTripsAsync(int page, int pageSize)
     {
-        var trips = await _tripRepository.GetAllTripsAsync();
-        return trips
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize);
+        var trips = await _tripRepository.GetAllTripsAsync(page, pageSize);
+        var totalTrips = await _tripRepository.GetTripsCountAsync();
+        return (trips, totalTrips);
     }
 }
